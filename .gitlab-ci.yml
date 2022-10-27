@@ -1,22 +1,46 @@
-stages: 
+image: node:latest
+
+stages:
+  - install
   - build
-  - test
+  - validation
   - deploy
 
-test-job1:
-  stage: test
+install:
+  stage: install
   script:
-    - echo "This job tests something"
-    
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+
 build:
   stage: build
   script:
     - npm run build
+  artifacts:
+    paths:
+      - out/
+lint:
+  stage: validation
+  dependencies:
+    - install
+  script:
+    - npm run lint
+
+test:
+  stage: validation
+  dependencies:
+    - install
+  script:
+    - npm test
 
 deploy:
   stage: deploy
   script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
-
-
+    - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'main'
+      when: on_success
+      allow_failure: true
 
