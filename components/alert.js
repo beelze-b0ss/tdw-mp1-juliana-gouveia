@@ -1,6 +1,7 @@
 import Container from "./container";
 import cn from "classnames";
 import { EXAMPLE_PATH } from "../lib/constants";
+import Link from "next/link"
 
 export default function Alert({ preview }) {
   return (
