@@ -2,8 +2,8 @@ image: node:latest
 
 stages:
   - install
-  - build
   - validation
+  - build
   - deploy
 
 install:
@@ -14,13 +14,6 @@ install:
     paths:
       - node_modules/
 
-build:
-  stage: build
-  script:
-    - npm run build
-  artifacts:
-    paths:
-      - out/
 lint:
   stage: validation
   dependencies:
@@ -34,6 +27,14 @@ test:
     - install
   script:
     - npm test
+
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - out/
 
 deploy:
   stage: deploy
