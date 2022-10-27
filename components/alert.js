@@ -14,7 +14,7 @@ export default function Alert({ preview }) {
       <Container>
         <div className="py-2 text-center text-sm">
           {preview ? (
-            <>
+            <Link>
               This is page is a preview.{" "}
               <a
                 href="/api/exit-preview"
@@ -23,7 +23,7 @@ export default function Alert({ preview }) {
                 Click here
               </a>{" "}
               to exit preview mode.
-            </>
+            </Link>
           ) : (
             <>
               The source code for this blog is{" "}
