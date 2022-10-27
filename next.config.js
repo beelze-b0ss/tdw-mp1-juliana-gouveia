@@ -6,8 +6,4 @@ module.exports = {
     unoptimized: true,
   },
   assetPrefix: "/",
-  extends: [
-    //...
-    'plugin:@next/next/recommended',
-  ],
 };
