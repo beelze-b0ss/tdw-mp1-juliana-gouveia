@@ -1,28 +1,17 @@
 stages: 
   - build
-  - run
   - deploy
 
-build-job:
+build:
   stage: build
   script:
+    - npm run build
     - echo "Hello, $GITLAB_USER_LOGIN!"
 
-
-test-job1:
-  stage: run
-  script:
-    - echo "This job tests something"
-
-test-job2:
-  stage: run
-  script:
-    - echo "This job tests something, but takes more time than test-job1."
-
-deploy-prod:
+deploy:
   stage: deploy
   script:
     - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
-  environment: production
+
 
 
