@@ -4,7 +4,6 @@ stages:
   - install
   - validation
   - build
-  - deploy
 
 install:
   stage: install
@@ -13,6 +12,11 @@ install:
   artifacts:
     paths:
       - node_modules/
+
+prettier:
+  stage: validation
+  script:
+    - npm run prettier
 
 lint:
   stage: validation
@@ -32,16 +36,6 @@ build:
   stage: build
   script:
     - npm run build
-  artifacts:
-    paths:
-      - out/
-
-deploy:
-  stage: deploy
-  script:
-    - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
   rules:
     - if: $CI_COMMIT_REF_NAME == 'main'
-      when: on_success
-      allow_failure: true
 
