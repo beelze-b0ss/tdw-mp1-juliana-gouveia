@@ -13,6 +13,11 @@ install:
     paths:
       - node_modules/
 
+prettier:
+  stage: validation
+  script:
+    - npm run prettier
+
 lint:
   stage: validation
   dependencies:
