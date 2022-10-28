@@ -31,8 +31,4 @@ build:
   stage: build
   script:
     - npm run build
-  artifacts:
-    paths:
-      - out/
-  rules:
-    - if: $CI_COMMIT_REF_NAME == 'main'
+  
