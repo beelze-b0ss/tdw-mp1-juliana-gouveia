@@ -4,7 +4,6 @@ stages:
   - install
   - validation
   - build
-  - deploy
 
 install:
   stage: install
@@ -35,3 +34,5 @@ build:
   artifacts:
     paths:
       - out/
+  rules:
+    - if: $CI_COMMIT_REF_NAME == 'main'
