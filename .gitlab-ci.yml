@@ -16,7 +16,7 @@ install:
 prettier:
   stage: validation
   script:
-    - npm run prettier
+    - npx prettier --write .
 
 lint:
   stage: validation
