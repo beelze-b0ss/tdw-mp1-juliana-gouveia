@@ -45,6 +45,4 @@ build:
 deploy:
   stage: deploy
   script:
-    - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth$NETLIFY_AUTH_TOKEN --prod
-    
-  
+    - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
