@@ -4,6 +4,7 @@ stages:
   - install
   - validation
   - build
+  - deploy
 
 install:
   stage: install
@@ -41,5 +42,8 @@ build:
   when: on_success
   allow_failure: true   #caso falhe, continuar a andar (impede que pare aqui)
 
-
-
+deploy:
+  stage: deploy
+  script:
+    - npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth$NETLIFY_AUTH_TOKEN --prod
+  
