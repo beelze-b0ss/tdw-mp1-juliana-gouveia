@@ -33,12 +33,6 @@ test:
   script:
     - npm test
 
-jest:
-  stage: validation
-  dependencies:
-    - "install"
-  script:
-    - npm test
 
 build:
   stage: build
