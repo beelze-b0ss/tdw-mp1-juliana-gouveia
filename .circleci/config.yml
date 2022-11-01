@@ -1,33 +1,38 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  run_test:   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker: #define docker key -> define docker image that will define where and how our code will run
-      - image: circleci/node:16 #all the node.js tools pre-installed
-    
-    steps: #list of commands and things to do to execute
+  run_tests:
+    docker:
+      - image: circleci/node:16
+
+    steps:
       - checkout
 
       - run:
-          name: install npm dependencies
-          command: 
-            npm install --save
-      
-      -run:
-        name: run jest
-        command:
-          npm test
+          name: Install npm dependencies
+          command: npm install
 
+      - run:
+          name: run lint
+          command: npm run lint
 
+      - run:
+          name: run prettier
+          command: npx prettier --write .
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-workflows: #way to tie your jobs together so that they operate and function cohesively
-  build-test:
+      - run:
+          name: run jest
+          command: npm test
+
+      - run:
+          command: npm run build
+          name: Build app
+
+      - run:
+          name: deploy
+          command: npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
+
+workflows: #run order
+  test_build_deply:
     jobs:
-      - run_test
+      - run_tests
