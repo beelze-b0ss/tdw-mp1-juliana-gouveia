@@ -32,7 +32,7 @@ jobs:
             npm test
 
       - run: 
-          name: run build
+          name: npm run build
           command: Build app
 
 workflows: #way to tie your jobs together so that they operate and function cohesively
