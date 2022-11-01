@@ -15,8 +15,7 @@ jobs:
 
       - run:
           name: run lint
-          command: 
-            npm run lint
+          command: npm run lint
 
       - run:
           name: run prettier
@@ -34,7 +33,8 @@ jobs:
             npm run build
 
 
-workflows: #way to tie your jobs together so that they operate and function cohesively
-  build_tests:
+workflows: #run order
+  test_build_deply:
     jobs:
       - run_tests
+
