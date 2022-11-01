@@ -5,22 +5,29 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+  run_test:   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
+    docker: #define docker key -> define docker image that will define where and how our code will run
+      - image: circleci/node:10 #all the node.js tools pre-installed
+    
+    steps: #list of commands and things to do to execute
       - checkout
+
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: install npm dependencies
+          command: 
+            npm install --save
+      
+      -run:
+        name: run jest
+        command:
+          npm test
+
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-workflows:
-  say-hello-workflow:
+workflows: #way to tie your jobs together so that they operate and function cohesively
+  build-test:
     jobs:
-      - say-hello
+      - run_test
