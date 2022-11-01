@@ -28,10 +28,6 @@ jobs:
           command: npm run build
           name: Build app
 
-      - run:
-          name: deploy
-          command: npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
-
 workflows: #run order
   test_build_deply:
     jobs:
