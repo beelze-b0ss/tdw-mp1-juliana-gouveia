@@ -31,7 +31,7 @@ test:
   dependencies:
     - install
   script:
-    - npm test
+    - npm test --coverage
 
 
 build:
