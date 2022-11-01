@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  run_test:   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+  run_tests:   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
   
     docker: #define docker key -> define docker image that will define where and how our code will run
       - image: circleci/node:16 #all the node.js tools pre-installed
@@ -36,6 +36,6 @@ jobs:
           command: Build app
 
 workflows: #way to tie your jobs together so that they operate and function cohesively
-  build-test:
+  build_tests:
     jobs:
       - run_tests
