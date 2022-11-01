@@ -11,11 +11,13 @@ jobs:
 
       - run:
           name: Install npm dependencies
-          command: npm install --save
+          command: 
+            npm install --save
 
       - run:
           name: run lint
-          command: npm run lint
+          command: 
+            npm run lint
 
       - run:
           name: run prettier
@@ -32,6 +34,10 @@ jobs:
           command:
             npm run build
 
+      - run:
+          name: Deploy to Netlify
+          command: 
+            npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
 
 workflows: #run order
   test_build_deply:
