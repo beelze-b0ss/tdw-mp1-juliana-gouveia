@@ -5,8 +5,10 @@ jobs:
   
     docker: #define docker key -> define docker image that will define where and how our code will run
       - image: circleci/node:16 #all the node.js tools pre-installed
-    
-    steps: #list of commands and things to do to execute
+
+
+    #list of commands and things to do to execute
+    steps: 
       - checkout
 
       - run:
@@ -20,16 +22,20 @@ jobs:
             npm run lint
 
       - run:
-          name: prettier
+          name: run prettier
           command:
             npm run prettier
       
       - run:
-        name: run jest
-        command:
-          npm test
+          name: run jest
+          command:
+            npm test
+
+      - run: 
+          name: run build
+          command: Build app
 
 workflows: #way to tie your jobs together so that they operate and function cohesively
   build-test:
     jobs:
-      - run_test
+      - run_tests
