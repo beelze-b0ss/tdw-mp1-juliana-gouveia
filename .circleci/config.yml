@@ -13,8 +13,18 @@ jobs:
           name: Install npm dependencies
           command: 
             npm install --save
+
+      - run:
+          name: run lint
+          command: 
+            npm run lint
+
+      - run:
+          name: prettier
+          command:
+            npm run prettier
       
-      -run:
+      - run:
         name: run jest
         command:
           npm test
