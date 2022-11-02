@@ -43,4 +43,15 @@ workflows: #way to tie your jobs together so that they operate and function cohe
   test_build_deply:
     jobs:
       - run_tests
+  daily-run-workflow:
+   triggers:
+     - schedule:
+         # Every day 00am.
+         cron: "00 00 * * *"
+         filters:
+           branches:
+             only:
+               - main
+   jobs:
+    - run_tests
 
