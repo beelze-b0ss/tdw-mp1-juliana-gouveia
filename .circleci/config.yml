@@ -37,7 +37,7 @@ jobs:
       - run:
           name: Deploy to Netlify
           command: 
-            npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod
+            npx netlify-cli deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --prod
 
 workflows: #way to tie your jobs together so that they operate and function cohesively
   test_build_deply:
